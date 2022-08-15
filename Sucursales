@@ -1,0 +1,102 @@
+import numpy as np
+import pandas as pd
+
+#Sucursales
+Branch1 = input("Por favor, ingrese el nombre de la ciudad de la primera sucursal... ").capitalize()
+Branch2 = input("Por favor, ingrese el nombre de la ciudad de la segunda sucursal... ").capitalize()
+Branch3 = input("Por favor, ingrese el nombre de la ciudad de la tercera sucursal... ").capitalize()
+Branch4 = input("Por favor, ingrese el nombre de la ciudad de la cuarta sucursal... ").capitalize()
+
+#Vendedor 1
+Seller1Branch1 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #1 en la primera ciudad... "))
+Seller1Branch2 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #1 en la segunda ciudad... "))
+Seller1Branch3 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #1 en la tercera ciudad... "))
+Seller1Branch4 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #1 en la cuarta ciudad... "))
+
+#Vendedor 2 
+Seller2Branch1 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #2 en la primera ciudad... "))
+Seller2Branch2 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #2 en la segunda ciudad... "))
+Seller2Branch3 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #2 en la tercera ciudad... "))
+Seller2Branch4 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #2 en la cuarta ciudad... "))
+
+#Vendedor 3
+Seller3Branch1 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #3 en la primera ciudad... "))
+Seller3Branch2 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #3 en la segunda ciudad... "))
+Seller3Branch3 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #3 en la tercera ciudad... "))
+Seller3Branch4 = int(input("Por favor, ingrese el número de productos que vendió el vendedor #3 en la cuarta ciudad... "))
+
+#Matriz 1
+Matrix = pd.DataFrame({Branch1:[Seller1Branch1, Seller2Branch1, Seller3Branch1],
+                                Branch2:[Seller1Branch2, Seller2Branch2, Seller3Branch2],
+                                Branch3:[Seller1Branch3, Seller2Branch3, Seller3Branch3],
+                                Branch4:[Seller1Branch4, Seller2Branch4, Seller3Branch4]})
+print("****************")
+print("MATRIZ INICIAL")
+print(Matrix)
+
+#Punto 1. ¿Cuál es la sucursal que menos vende?
+branchSales1 = (Seller1Branch1 + Seller2Branch1 + Seller3Branch1)
+branchSales2 = (Seller1Branch2 + Seller2Branch2 + Seller3Branch2)
+branchSales3 = (Seller1Branch3 + Seller2Branch3 + Seller3Branch3)
+branchSales4 = (Seller1Branch4 + Seller2Branch4 + Seller3Branch4)
+
+print("****************")
+print("SUCURSAL CON MENOS VENTAS")
+if branchSales1 < branchSales2 and branchSales1 < branchSales3 and branchSales1 < branchSales4:
+  print("La sucursal que menos vende es... ", Branch1)
+elif branchSales2 < branchSales1 and branchSales2 < branchSales3 and branchSales2 < branchSales4:
+  print("La sucursal que menos vende es... ", Branch2)
+elif branchSales3 < branchSales1 and branchSales3 < branchSales2 and branchSales3 < branchSales4:
+  print("La sucursal que menos vende es... ", Branch3)
+elif branchSales3 < branchSales1 and branchSales3 < branchSales2 and branchSales3 < branchSales4:
+  print("La sucursal que menos vende es... ", Branch4)
+
+#Punto 2. ¿Cuál es el mejor vendedor?
+salesOfTheSeller1 = (Seller1Branch1 + Seller1Branch2 + Seller1Branch3 + Seller1Branch4)
+salesOfTheSeller2 = (Seller2Branch1 + Seller2Branch2 + Seller2Branch3 + Seller2Branch4)
+salesOfTheSeller3 = (Seller3Branch1 + Seller3Branch2 + Seller3Branch3 + Seller3Branch4)
+
+print("****************")
+print("MEJOR VENDEDOR")
+if salesOfTheSeller1 > salesOfTheSeller2 and salesOfTheSeller1 > salesOfTheSeller3:
+  print("El mejor vendedor, fue el vendedor #1")
+elif salesOfTheSeller2 > salesOfTheSeller1 and salesOfTheSeller2 > salesOfTheSeller3:
+  print("El mejor vendedor, fue el vendedor #2")
+elif salesOfTheSeller3 > salesOfTheSeller1 and salesOfTheSeller3 > salesOfTheSeller2:
+  print("El mejor vendedor, fue el vendedor #3")
+
+#Punto 3. Promedio de ventas en cada sucursal 
+averageBranchSales1 = round(branchSales1/3, 2)
+averageBranchSales2 = round(branchSales2/3, 2)
+averageBranchSales3 = round(branchSales3/3, 2)
+averageBranchSales4 = round(branchSales4/3, 2)
+
+print("****************")
+print("PROMEDIO DE VENTAS EN SUCURSALES")
+print("El promedio en la sucursal de", Branch1, "es de", averageBranchSales1,"ventas")
+print("El promedio en la sucursal de", Branch2, "es de", averageBranchSales2,"ventas")
+print("El promedio en la sucursal de", Branch3, "es de", averageBranchSales3,"ventas")
+print("El promedio en la sucursal de", Branch4, "es de", averageBranchSales4,"ventas")
+
+#Punto 4. Promedio de ventas de cada vendedor
+averageSalesOfSalespeople1 = round(salesOfTheSeller1/4, 2)
+averageSalesOfSalespeople2 = round(salesOfTheSeller2/4, 2)
+averageSalesOfSalespeople3 = round(salesOfTheSeller3/4, 2)
+
+print("****************")
+print("PROMEDIO DE VENTAS POR VENDEDOR")
+print("El promedio del vendedor #1 es de ", averageSalesOfSalespeople1,"ventas")
+print("El promedio del vendedor #2 es de ", averageSalesOfSalespeople2,"ventas")
+print("El promedio del vendedor #3 es de ", averageSalesOfSalespeople3,"ventas")
+
+#Matriz2
+Matrix2 = pd.DataFrame({
+                                Branch1:[Seller1Branch1, Seller2Branch1, Seller3Branch1, branchSales1],
+                                Branch2:[Seller1Branch2, Seller2Branch2, Seller3Branch2, branchSales2],
+                                Branch3:[Seller1Branch3, Seller2Branch3, Seller3Branch3, branchSales3],
+                                Branch4:[Seller1Branch4, Seller2Branch4, Seller3Branch4, branchSales4],
+                                ("Total"):[salesOfTheSeller1, salesOfTheSeller2, salesOfTheSeller3, ("Total")]})
+
+print("****************")
+print("MATRIZ FINAL")
+print(Matrix2)
